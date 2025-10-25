@@ -5,7 +5,7 @@ from sentence_transformers import SentenceTransformer, util
 from ibm_watsonx_ai import Credentials
 from ibm_watsonx_ai.foundation_models import ModelInference
 
-#---CONFIG---
+# CONFIG --X--X--
 st.set_page_config(page_title="LearnMate - PDF Q&A Bot", layout="wide")
 st.title("📘 LearnMate - PDF Question Answering Bot")
 
@@ -30,10 +30,10 @@ else:
     api_key = "vBVJUXhWG38XeIyiQs6OUnWY4_R8KIjdHvB4tsUg6rIC"
     project_id = "cf0c115c-5e77-471c-aede-f35fc523835c"
 
-#---Initialize Embedding Model ------------------
+# Initialize Embedding Model --X--X--
 embedding_model = SentenceTransformer("all-MiniLM-L6-v2")
 
-#---Process PDF ------------------
+# Process PDF --X--X--
 if uploaded_file is not None:
     raw_text = extract_text_from_pdf(uploaded_file)
     chunks = split_text(raw_text, max_chunk_size=300)
@@ -41,7 +41,7 @@ if uploaded_file is not None:
 
     st.success(f"✅ PDF loaded and split into {len(chunks)} chunks.")
 
-    # ------------------ Q&A ------------------
+    # Q&A --X--X--
     if question_input:
         question_embedding = embedding_model.encode(question_input, convert_to_tensor=True)
         similarities = util.cos_sim(question_embedding, chunk_embeddings)[0]
